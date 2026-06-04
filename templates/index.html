@@ -102,6 +102,17 @@
             background-color: var(--danger);
             color: white;
         }
+
+        .delete-latest-btn {
+            background-color: var(--danger);
+            color: white;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .delete-latest-btn:hover {
+            background-color: #dc2626;
+        }
     </style>
 </head>
 <body>
@@ -114,6 +125,8 @@
         <button id="add-btn">Add Task</button>
     </div>
 
+    <button id="delete-latest-btn" class="delete-latest-btn">Delete Latest Task</button>
+
     <ul id="todo-list"></ul>
 </div>
 
@@ -125,7 +138,10 @@
     // Fetch and render items on initial load
     document.addEventListener('DOMContentLoaded', fetchTodos);
 
+    const deleteLatestBtn = document.getElementById('delete-latest-btn');
+
     addBtn.addEventListener('click', addTodo);
+    deleteLatestBtn.addEventListener('click', deleteLatestTodo);
     todoInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') addTodo();
     });
@@ -152,6 +168,15 @@
             renderTodoItem(newTodo);
             todoInput.value = '';
         }
+    }
+
+    async function deleteLatestTodo() {
+        const items = todoListElement.querySelectorAll('li');
+        if (items.length === 0) return;
+
+        const lastItem = items[items.length - 1];
+        const deleteBtn = lastItem.querySelector('.delete-btn');
+        if (deleteBtn) deleteBtn.click();
     }
 
     async function deleteTodo(id, element) {
