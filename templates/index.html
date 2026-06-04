@@ -102,9 +102,51 @@
             background-color: var(--danger);
             color: white;
         }
+
+        nav {
+            background-color: var(--primary);
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        nav a:hover {
+            background-color: #1d4ed8;
+        }
+
+        nav a.active {
+            background-color: #1e40af;
+            border-bottom: 3px solid white;
+        }
+
+        body {
+            padding-top: 4.5rem;
+        }
     </style>
 </head>
 <body>
+
+<nav>
+    <a href="/" class="active">Tasks</a>
+    <a href="/contact">Contact Form</a>
+</nav>
 
 <div class="container">
     <h1>My Tasks</h1>
