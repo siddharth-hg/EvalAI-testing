@@ -14,6 +14,11 @@ def index():
     """Serves the main frontend HTML page."""
     return render_template('index.html')
 
+@app.route('/contact')
+def contact():
+    """Serves the contact form page."""
+    return render_template('contact.html')
+
 @app.route('/api/todos', methods=['GET'])
 def get_todos():
     """API endpoint to fetch all todo items."""

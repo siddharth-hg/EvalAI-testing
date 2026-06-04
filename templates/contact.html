@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+            --success: #22c55e;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            width: 100%;
+            background-color: var(--primary);
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        nav a:hover {
+            background-color: #1d4ed8;
+        }
+
+        nav a.active {
+            background-color: #1d4ed8;
+            border-bottom: 3px solid white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: var(--surface);
+            padding: 2rem;
+            margin-top: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 1.75rem;
+            color: #0f172a;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem 1.2rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .success-message {
+            display: none;
+            background-color: #f0fdf4;
+            border: 1px solid var(--success);
+            color: #166534;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/">Tasks</a>
+    <a href="/contact" class="active">Contact Form</a>
+</nav>
+
+<div class="container">
+    <h1>Contact Information</h1>
+
+    <form id="contact-form">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="success-message" id="success-message">
+        Your information has been submitted successfully!
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('contact-form');
+    const successMessage = document.getElementById('success-message');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const address = document.getElementById('address').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+
+        if (!name || !address || !phone) {
+            alert('Please fill in all fields.');
+            return;
+        }
+
+        // Display success message
+        successMessage.style.display = 'block';
+        form.reset();
+
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 5000);
+    });
+</script>
+</body>
+</html>
