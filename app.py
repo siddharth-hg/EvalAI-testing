@@ -14,6 +14,40 @@ def index():
     """Serves the main frontend HTML page."""
     return render_template('index.html')
 
+@app.route('/contact')
+def contact():
+    """Serves the contact information form page."""
+    return render_template('contact.html')
+
+@app.route('/api/contact', methods=['POST'])
+def submit_contact():
+    """API endpoint to handle contact form submissions."""
+    data = request.get_json()
+
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
+
+    name = data.get('name', '').strip()
+    address = data.get('address', '').strip()
+    phone = data.get('phone', '').strip()
+
+    errors = []
+    if not name:
+        errors.append("Name is required")
+    if not address:
+        errors.append("Address is required")
+    if not phone:
+        errors.append("Phone number is required")
+
+    if errors:
+        return jsonify({"errors": errors}), 400
+
+    return jsonify({
+        "success": True,
+        "message": "Contact information submitted successfully",
+        "data": {"name": name, "address": address, "phone": phone}
+    }), 201
+
 @app.route('/api/todos', methods=['GET'])
 def get_todos():
     """API endpoint to fetch all todo items."""
