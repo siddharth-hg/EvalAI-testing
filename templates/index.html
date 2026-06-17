@@ -7,7 +7,6 @@
     <style>
         :root {
             --primary: #2563eb;
-            --background: #ff0000;
             --surface: #ffffff;
             --text: #1e293b;
             --border: #e2e8f0;
@@ -16,12 +15,21 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--background);
+            background: linear-gradient(90deg,
+                #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3,
+                #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            background-size: 300% 100%;
+            animation: rainbow 8s linear infinite;
             color: var(--text);
             margin: 0;
             padding: 2rem;
             display: flex;
             justify-content: center;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
 
         .container {
