@@ -3,22 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
-    <style>
-        body {
-            background-color: violet;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            font-size: 2rem;
-            color: #333;
-        }
-    </style>
+    <title>User Information Form</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    Hello World
+    <div class="container">
+        <h1>Enter Your Details</h1>
+        <form id="userForm" novalidate>
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                <span class="error-message" id="firstNameError"></span>
+            </div>
+            <div class="form-group">
+                <label for="surname">Surname</label>
+                <input type="text" id="surname" name="surname" required placeholder="Enter your surname">
+                <span class="error-message" id="surnameError"></span>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number" pattern="[0-9]{10}" maxlength="10">
+                <span class="error-message" id="mobileError"></span>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        <div id="successMessage" class="success-message hidden">
+            <p>Thank you! Your information has been submitted successfully.</p>
+            <button id="resetBtn" class="reset-btn">Submit Another</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
